@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {getSongs} from "./api/getSongs";
-
+import {SimpleGlobe} from "./globe/globe";
 function App() {
 
   getSongs().then((data) => {
@@ -24,7 +24,9 @@ function App() {
           Learn React
         </a>
       </header>
+    <SimpleGlobe/>
     </div>
+
   );
 }
 
