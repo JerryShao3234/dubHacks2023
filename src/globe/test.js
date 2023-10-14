@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import ReactGlobe from 'react-globe';
+import ReactGlobe from 'react-globe.gl';
 
 // import optional tippy styles for tooltip support
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
+import { SimpleGlobe } from './globe';
 
 function MyGlobe() {
   // support rendering markers with simple data
@@ -69,20 +70,8 @@ function MyGlobe() {
 
   // simple component usage
   return (
-    <ReactGlobe
-      height="100vh"
-      globeBackgroundTexture="https://your/own/background.jpg"
-      globeCloudsTexture={null}
-      globeTexture="https://your/own/globe.jpg"
-      initialCoordinates={[1.3521, 103.8198]}
-      markers={markers}
-      options={options}
-      width="100%"
-      onClickMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
-      onGetGlobe={setGlobe}
-      onMouseOutMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
-      onGlobeTextureLoaded={() => console.log('globe loaded')}
-      onMouseOverMarker={(marker, markerObject, event) => console.log(marker, markerObject, event)}
-    />
+    <SimpleGlobe/>
   )
 }
+
+export {MyGlobe};
