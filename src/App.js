@@ -1,7 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import {getSongs} from "./api/getSongs";
 
 function App() {
+
+  getSongs().then((data) => {
+    console.log(data);
+  });
+
   return (
     <div className="App">
       <header className="App-header">
