@@ -3,7 +3,7 @@ import Globe from 'react-globe.gl';
 import ReactGlobe from 'react-globe.gl';
 import { defaultBarMarkerOptions, defaultDotMarkerOptions } from 'react-globe.gl';
 
-function SimpleGlobe() {
+function SimpleGlobe({country, setCountry}) {
 
     //create a list of labels:
     var gData = [{

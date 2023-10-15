@@ -6,24 +6,24 @@ import { makeStyles } from "@mui/styles";
 
 const countries = [
     {
-      value: 'CAN',
+      value: 'CA',
       label: 'Canada',
     },
     {
-      value: 'USD',
+      value: 'US',
       label: 'United States',
     },
     {
-      value: 'UK',
+      value: 'BR',
       label: 'United Kingdom',
     },
     {
-      value: 'JPY',
+      value: 'JP',
       label: 'Japan',
     },
 ];
 
-const Search = () => (
+const Search = ({country, setCountry}) => (
 
     <Box
       component="form"
@@ -36,7 +36,7 @@ const Search = () => (
                 id="countries"
                 select
                 label="Country"
-                defaultValue="CAN"
+                value={country}
                 variant='standard'
                 sx={{
                     "width": '200px',
@@ -55,6 +55,10 @@ const Search = () => (
                       "& .MuiInput-underline:after": {
                         borderBottomColor: "#F1B4BB"
                       },
+                }}
+                onChange={(e) => {
+                    console.log("text field changing country:", e.target.value);
+                    setCountry(e.target.value);
                 }}
             >
             {countries.map((option) => (

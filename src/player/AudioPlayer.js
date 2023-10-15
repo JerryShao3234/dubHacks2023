@@ -105,6 +105,8 @@ const AudioPlayer = ({ tracks }) => {
     };
   }, []);
 
+  if (!tracks.length) return <></>;
+
   return (
     <div className="audio-player">
       <div className="track-info">
