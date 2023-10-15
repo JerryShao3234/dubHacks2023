@@ -28,15 +28,19 @@ function App() {
       })
   }, [country]);
 
+  const [isVisible, setIsVisible] = useState(false);
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   return (
     <div className="App">
         {tracks.length > 0 && <AudioPlayer tracks={tracks} />}
+        <button onClick={toggleVisibility}>Toggle</button>
         <Search country={country} setCountry={setCountry}/>
         <SimpleGlobe country={country} setCountry={setCountry}/>
-        <SongLists/>
+        <SongLists tracks={tracks} isVisible={isVisible} setIsVisible={setIsVisible}/>
     </div>
-
   );
 }
 

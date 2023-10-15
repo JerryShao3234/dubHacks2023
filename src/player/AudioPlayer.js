@@ -134,6 +134,7 @@ const AudioPlayer = ({ tracks }) => {
           onKeyUp={onScrubEnd}
           style={{ background: trackStyling }}
         />
+        {/* <button onClick={toggleVisibility}>Test Button</button> */}
       </div>
       <Backdrop
         trackIndex={trackIndex}
