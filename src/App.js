@@ -5,19 +5,15 @@ import {getSongs} from "./api/getSongs";
 import {SimpleGlobe} from "./globe/globe";
 import AudioPlayer from "./player/AudioPlayer";
 import Search from "./player/Search";
+import {MAPPED_COUNTRIES} from "./countries";
 // import tracks from "./tracks";
 
 function App() {
-  const [country, setCountry] = useState({
-    name: 'Canada',
-    lat: 56.1304,
-    lng: -106.3468,
-    code: 'CA'
-  });
+  const [country, setCountry] = useState(MAPPED_COUNTRIES[7]);
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
-      getSongs(country.code).then((data) => {
+      getSongs(country).then((data) => {
         console.log(data);
         const tracks = data.map((song) => {
             return {
@@ -37,7 +33,7 @@ function App() {
     <div className="App">
       {/* <div className='audio-div'> */}
         {tracks.length > 0 && <AudioPlayer tracks={tracks} />}
-        <Search country={country.code} setCountry={setCountry}/>
+        <Search country={country} setCountry={setCountry}/>
       {/* </div> */}
       {/* <div className='globe-div'> */}
         <SimpleGlobe country={country} setCountry={setCountry}/>
