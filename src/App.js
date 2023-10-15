@@ -8,11 +8,16 @@ import Search from "./player/Search";
 // import tracks from "./tracks";
 
 function App() {
-  const [country, setCountry] = useState('CA');
+  const [country, setCountry] = useState({
+    name: 'Canada',
+    lat: 56.1304,
+    lng: -106.3468,
+    code: 'CA'
+  });
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
-      getSongs(country).then((data) => {
+      getSongs(country.code).then((data) => {
         console.log(data);
         const tracks = data.map((song) => {
             return {
@@ -32,7 +37,7 @@ function App() {
     <div className="App">
       {/* <div className='audio-div'> */}
         {tracks.length > 0 && <AudioPlayer tracks={tracks} />}
-        <Search country={country} setCountry={setCountry}/>
+        <Search country={country.code} setCountry={setCountry}/>
       {/* </div> */}
       {/* <div className='globe-div'> */}
         <SimpleGlobe country={country} setCountry={setCountry}/>
