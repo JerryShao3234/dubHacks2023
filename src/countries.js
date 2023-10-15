@@ -48,7 +48,7 @@ export const MAPPED_COUNTRIES = [
     {"value": "SA", "label": "Saudi Arabia", "lat": 23.9, "lng": 45, "id": 47, "text": "Saudi Arabia"},
     {"value": "RS", "label": "Serbia", "lat": 44, "lng": 20.5, "id": 48, "text": "Serbia"},
     {"value": "ZA", "label": "South Africa", "lat": -28.5, "lng": 25, "id": 49, "text": "South Africa"},
-    {"value": "KR", "label": "Korea", "lat": 36.6, "lng": 127.8, "id": 50, "text": "Korea"},
+    {"value": "KR", "label": "South Korea", "lat": 36.6, "lng": 127.8, "id": 50, "text": "South Korea"},
     {"value": "ES", "label": "Spain", "lat": 40.5, "lng": -4.8, "id": 51, "text": "Spain"},
     {"value": "SE", "label": "Sweden", "lat": 62, "lng": 15, "id": 52, "text": "Sweden"},
     {"value": "CH", "label": "Switzerland", "lat": 47, "lng": 8, "id": 53, "text": "Switzerland"},
