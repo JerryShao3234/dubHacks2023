@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import AudioControls from "./AudioControls";
-// import Backdrop from "./Backdrop";
+import Backdrop from "./Backdrop";
 import "./styles.css";
 
 const AudioPlayer = ({ tracks }) => {
@@ -134,11 +134,11 @@ const AudioPlayer = ({ tracks }) => {
           style={{ background: trackStyling }}
         />
       </div>
-      {/* <Backdrop
+      <Backdrop
         trackIndex={trackIndex}
         activeColor={color}
         isPlaying={isPlaying}
-      /> */}
+      />
     </div>
   );
 };
