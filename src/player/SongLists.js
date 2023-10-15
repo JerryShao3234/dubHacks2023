@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import "./styles.css";
 
 const SongLists = ({ tracks, isVisible , setIsVisible}) => {
 

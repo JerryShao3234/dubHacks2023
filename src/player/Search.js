@@ -22,20 +22,21 @@ const Search = ({country, setCountry}) => (
                 sx={{
                     "width": '200px',
                     "& .MuiInputBase-input": {
-                        color: "white"
-                      },
-                      "& .MuiInput-underline:root": {
+                        color: "white",
+                        fontWeight: "bold"
+                    },
+                    "& .MuiInput-underline:root": {
                         borderBottomColor: "white"
-                      },
-                      "& .MuiInputLabel-root": {
+                    },
+                    "& .MuiInputLabel-root": {
                         color: "white"
-                      },
+                    },
                     "& label.Mui-focused": {
                         color: "white"
-                      },
-                      "& .MuiInput-underline:after": {
+                    },
+                    "& .MuiInput-underline:after": {
                         borderBottomColor: "white"
-                      },
+                    },
                 }}
                 onChange={(e) => {
                     console.log("text field changing country:", e.target.value);

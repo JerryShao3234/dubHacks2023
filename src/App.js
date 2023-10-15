@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {getSongs} from "./api/getSongs";
 import {SimpleGlobe} from "./globe/globe";
@@ -7,10 +6,16 @@ import AudioPlayer from "./player/AudioPlayer";
 import Search from "./player/Search";
 import {MAPPED_COUNTRIES} from "./countries";
 import SongLists from './player/SongLists';
+import Home from './Home';
 
 function App() {
   const [country, setCountry] = useState(MAPPED_COUNTRIES[6]);
   const [tracks, setTracks] = useState([]);
+  const [showMainPage, setShowMainPage] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowMainPage(true);
+  };
 
   useEffect(() => {
       getSongs(country).then((data) => {
@@ -34,14 +39,21 @@ function App() {
 
   return (
     <div className="App">
-        {tracks.length > 0 && <AudioPlayer tracks={tracks} />}
-        <Search country={country} setCountry={setCountry}/>
+
+        <div className={`home-page ${showMainPage ? 'fade-out' : 'fade-in'}`}>
+          <Home showMainPage={showMainPage} setShowMainPage={setShowMainPage} handleButtonClick={handleButtonClick}/>
+        </div>
+        
+        {showMainPage && tracks.length > 0 && <AudioPlayer class='fade-in' tracks={tracks} />}
+        {showMainPage && <Search class='fade-in' country={country} setCountry={setCountry}/>}
         <SimpleGlobe country={country} setCountry={setCountry}/>
-        {/*If toggleVisibility is true, button text is Hide Song list. Or else, Show Song List */}
-        <button onClick={toggleVisibility} class="song-list-btn">
-          {isVisible ? "Hide Song List" : "Show Song List"}
-        </button>
-        <SongLists tracks={tracks} isVisible={isVisible} setIsVisible={setIsVisible}/>
+          
+        {showMainPage &&
+          <button class='fade-in song-list-btn' onClick={toggleVisibility}>
+            {isVisible ? "Hide Song List" : "Show Song List"}
+          </button>}
+        {showMainPage && <SongLists class='fade-in' tracks={tracks} isVisible={isVisible} setIsVisible={setIsVisible}/>}
+        
     </div>
   );
 }
