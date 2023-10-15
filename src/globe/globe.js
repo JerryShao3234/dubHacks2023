@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Globe from 'react-globe.gl';
 import ReactGlobe from 'react-globe.gl';
 import { defaultBarMarkerOptions, defaultDotMarkerOptions } from 'react-globe.gl';
@@ -14,9 +14,17 @@ function SimpleGlobe() {
         id: '1',
     }];
 
+    var globeEl =  React.useRef();
+
+    useEffect(() => {
+        globeEl.autoRotate = true;
+        globeEl.current.controls().autoRotate = true;
+        globeEl.current.controls().autoRotateSpeed = 0.5;
+    }, []);
 
     return <ReactGlobe
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+        ref={globeEl}
+        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
         bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
         labelsData={gData}
@@ -27,7 +35,10 @@ function SimpleGlobe() {
             enableMarkerGlow: true,
             markerRadiusScaleRange: [1, 2],
             markerType: 'dot',
-          }}
+            autoRotate: true,
+            pointLightIntensity: 40,
+            pointLightPositionRadiusScales: [2, 1, -1]
+        }}
     />
 }
 
