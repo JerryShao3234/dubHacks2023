@@ -2,25 +2,3 @@
   position: relative;
   text-align: center;
 }
-
-/* .audio-div {
-  --white: #fff;
-  --active-color: #B5CB99;
-  z-index: 10;
-  position: absolute;
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--active-color);
-  transition: background 0.4s ease;
-  box-sizing: border-box;
-  max-width: 20%;
-  top: 20px;
-  left: 20px;
-} */
-
-/* .globe-div { */
-  /* display: block; */
-  /* top: 0;
-  left: 0; */
-  /* z-index: 1; */
-  /* width: 50%; */
-/* } */
