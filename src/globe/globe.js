@@ -13,9 +13,10 @@ function SimpleGlobe({country, setCountry}) {
         globeEl.autoRotate = true;
         globeEl.current.controls().autoRotate = true;
         globeEl.current.controls().autoRotateSpeed = 0.1;
-        //set default country to country passed in
-        globeEl.current.pointOfView({lat: country.lat, lng: country.lng, altitude: 1.5});
-    }, []);
+        //set default country to country passed in, with animation
+        globeEl.current.pointOfView({lat: country.lat, lng: country.lng, altitude: 1.5}, 1000);
+
+    }, [country]);
 
     return <ReactGlobe
         ref={globeEl}
