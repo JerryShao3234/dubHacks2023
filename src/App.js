@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import {getSongs} from "./api/getSongs";
 import {SimpleGlobe} from "./globe/globe";
+import AudioPlayer from "./player/AudioPlayer";
+import tracks from "./tracks";
+
 function App() {
 
   getSongs().then((data) => {
@@ -11,7 +14,12 @@ function App() {
 
   return (
     <div className="App">
-      <SimpleGlobe/>
+      {/* <div className='audio-div'> */}
+        <AudioPlayer tracks={tracks} />
+      {/* </div> */}
+      {/* <div className='globe-div'> */}
+        <SimpleGlobe/>
+      {/* </div> */}
     </div>
 
   );
