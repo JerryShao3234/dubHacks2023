@@ -35,9 +35,12 @@ function App() {
   return (
     <div className="App">
         {tracks.length > 0 && <AudioPlayer tracks={tracks} />}
-        <button onClick={toggleVisibility}>Toggle</button>
         <Search country={country} setCountry={setCountry}/>
         <SimpleGlobe country={country} setCountry={setCountry}/>
+        {/*If toggleVisibility is true, button text is Hide Song list. Or else, Show Song List */}
+        <button onClick={toggleVisibility} class="song-list-btn">
+          {isVisible ? "Hide Song List" : "Show Song List"}
+        </button>
         <SongLists tracks={tracks} isVisible={isVisible} setIsVisible={setIsVisible}/>
     </div>
   );

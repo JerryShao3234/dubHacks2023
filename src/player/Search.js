@@ -22,19 +22,19 @@ const Search = ({country, setCountry}) => (
                 sx={{
                     "width": '200px',
                     "& .MuiInputBase-input": {
-                        color: "#F1B4BB"
+                        color: "white"
                       },
                       "& .MuiInput-underline:root": {
-                        borderBottomColor: "#F1B4BB"
+                        borderBottomColor: "white"
                       },
                       "& .MuiInputLabel-root": {
-                        color: "#F1B4BB"
+                        color: "white"
                       },
                     "& label.Mui-focused": {
-                        color: "#F1B4BB"
+                        color: "white"
                       },
                       "& .MuiInput-underline:after": {
-                        borderBottomColor: "#F1B4BB"
+                        borderBottomColor: "white"
                       },
                 }}
                 onChange={(e) => {
