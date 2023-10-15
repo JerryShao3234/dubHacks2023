@@ -16,7 +16,7 @@ function SimpleGlobe({country, setCountry}) {
         if(event.altitude != currAlt){
             setCurrAlt(event.altitude);
             if(event.altitude < 1.0){
-                setLabelSize(0.5);
+                setLabelSize(0.6);
             }else{
                 setLabelSize(1.2);
             }
