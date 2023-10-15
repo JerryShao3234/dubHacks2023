@@ -18,7 +18,7 @@ input[type="range"] {
 .search {
     padding: 15px 20px;
     border-radius: 20px;
-    box-shadow: 0 28px 28px rgba(0, 0, 0, 0.2);
+    border-color: #F1B4BB;
     color: var(--white);
     --white: #fff;
     --active-color: #F1B4BB;
@@ -33,17 +33,11 @@ input[type="range"] {
     right: 20px;
     opacity: 0.9;
     transition: all 0.3s ease-in-out;
-}
-
-.search:hover {
-    opacity: 0.95;
-    border-radius: 20px;
-    transform: scale(1.03);
+    box-shadow: 5px 10px #888888;
 }
 
 .search-input {
     border-radius: 5px;
-    border: none;
     padding: 5px;
     width: 100%;
 }
@@ -58,7 +52,6 @@ input[type="range"] {
     z-index: 10;
     position: absolute;
     font-family: Arial, Helvetica, sans-serif;
-    background: var(--active-color);
     transition: background 0.4s ease;
     box-sizing: border-box;
     width: 18%;
@@ -66,20 +59,34 @@ input[type="range"] {
     left: 20px;
     opacity: 0.9;
     transition: all 0.3s ease-in-out;
+    box-shadow: 5px 10px #888888;
 }
 
-.audio-player:hover {
+.song-list {
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 0 28px 28px rgba(0, 0, 0, 0.2);
+    color: var(--white);
+    --white: #fff;
+    --active-color: #F1B4BB;
+    z-index: 10;
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--active-color);
+    transition: background 0.4s ease;
+    box-sizing: border-box;
+    width: 18%;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0.9;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 5px 10px #888888;
+}
+
+.search:hover, .audio-player:hover, .song-list:hover {
     opacity: 0.95;
     border-radius: 20px;
     transform: scale(1.03);
-}
-
-.artwork {
-    border-radius: 120px;
-    display: block;
-    margin: auto;
-    height: 150px;
-    width: 150px;
 }
 
 .track-info {
@@ -133,9 +140,24 @@ input[type="range"] {
     border-radius: 20px;
 }
 
-.color-backdrop.playing {
+.color-backdrop.isPlaying {
     animation: colorChange 20s alternate infinite;
 }
+
+.artwork {
+    border-radius: 120px;
+    display: block;
+    margin: auto;
+    height: 150px;
+    width: 150px;
+    box-shadow: 3px 3px 3px #F1B4BB;
+    transition: border 0.3s ease; /* Add a transition effect to the border property */
+}
+
+.artwork.isPlaying {
+    animation: borderChange 0.5s alternate infinite;
+}
+
 
 @keyframes colorChange {
     from {
@@ -143,5 +165,17 @@ input[type="range"] {
     }
     to {
         filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes borderChange {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        transform: scale(1, 1);
     }
 }

@@ -6,7 +6,7 @@ import {SimpleGlobe} from "./globe/globe";
 import AudioPlayer from "./player/AudioPlayer";
 import Search from "./player/Search";
 import {MAPPED_COUNTRIES} from "./countries";
-// import tracks from "./tracks";
+import SongLists from './player/SongLists';
 
 function App() {
   const [country, setCountry] = useState(MAPPED_COUNTRIES[6]);
@@ -31,13 +31,10 @@ function App() {
 
   return (
     <div className="App">
-      {/* <div className='audio-div'> */}
         {tracks.length > 0 && <AudioPlayer tracks={tracks} />}
         <Search country={country} setCountry={setCountry}/>
-      {/* </div> */}
-      {/* <div className='globe-div'> */}
         <SimpleGlobe country={country} setCountry={setCountry}/>
-      {/* </div> */}
+        <SongLists/>
     </div>
 
   );

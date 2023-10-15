@@ -111,7 +111,7 @@ const AudioPlayer = ({ tracks }) => {
     <div className="audio-player">
       <div className="track-info">
         <img
-          className="artwork"
+          className={`artwork ${isPlaying ? "isPlaying" : ""}`}
           src={image}
           alt={`track artwork for ${title} by ${artist}`}
         />
