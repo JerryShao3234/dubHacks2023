@@ -9,7 +9,7 @@ import {MAPPED_COUNTRIES} from "./countries";
 // import tracks from "./tracks";
 
 function App() {
-  const [country, setCountry] = useState(MAPPED_COUNTRIES[7]);
+  const [country, setCountry] = useState(MAPPED_COUNTRIES[6]);
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {

@@ -1,5 +1,4 @@
 export const MAPPED_COUNTRIES = [
-    {"value": "US", "label": "United States", "lat": 37, "lng": -95, "id": 1, "text": "United States"},
     {"value": "AR", "label": "Argentina", "lat": -34, "lng": -64, "id": 2, "text": "Argentina"},
     {"value": "AU", "label": "Australia", "lat": -27, "lng": 133, "id": 3, "text": "Australia"},
     {"value": "AT", "label": "Austria", "lat": 47.6, "lng": 14, "id": 4, "text": "Austria"},
@@ -58,6 +57,7 @@ export const MAPPED_COUNTRIES = [
     {"value": "UA", "label": "Ukraine", "lat": 49, "lng": 31, "id": 57, "text": "Ukraine"},
     {"value": "AE", "label": "United Arab Emirates", "lat": 23.4, "lng": 53.8, "id": 58, "text": "United Arab Emirates"},
     {"value": "GB", "label": "United Kingdom", "lat": 55, "lng": 3.4, "id": 59, "text": "United Kingdom"},
+    {"value": "US", "label": "United States", "lat": 37, "lng": -95, "id": 1, "text": "United States"},
     {"value": "UY", "label": "Uruguay", "lat": 32.5, "lng": 55.7, "id": 60, "text": "Uruguay"},
     {"value": "ZW", "label": "Zimbabwe", "lat": 19, "lng": 29.1, "id": 61, "text": "Zimbabwe"}
 ];
