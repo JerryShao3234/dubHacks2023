@@ -4,8 +4,8 @@ button {
     cursor: pointer;
 }
 
-a { 
-    color: white; 
+a {
+    color: white;
 }
 
 input[type="range"] {
@@ -69,7 +69,7 @@ input[type="range"] {
 .song-list {
     padding: 24px;
     border-radius: 20px;
-    box-shadow: 0 28px 28px rgba(0, 0, 0, 0.2);    
+    box-shadow: 0 28px 28px rgba(0, 0, 0, 0.2);
     color: var(--white);
     --white: #fff;
     --active-color: #F1B4BB;
@@ -203,7 +203,7 @@ input[type="range"] {
     /* display: none; */
     animation: slideOut 0.5s forwards;
 }
-  
+
 .visible {
     /* display: block; */
     animation: slideIn 0.5s forwards;
@@ -229,4 +229,10 @@ input[type="range"] {
         transform: translateY(-100%);
         opacity: 0;
     }
+}
+
+.player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
