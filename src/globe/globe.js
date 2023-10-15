@@ -4,7 +4,6 @@ import ReactGlobe from 'react-globe.gl';
 import { defaultBarMarkerOptions, defaultDotMarkerOptions } from 'react-globe.gl';
 import { MAPPED_COUNTRIES } from './../countries.js'
 function SimpleGlobe({country, setCountry}) {
-    console.log(MAPPED_COUNTRIES)
     //create a list of labels:
 
     var globeEl =  React.useRef();
