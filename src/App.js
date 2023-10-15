@@ -12,6 +12,7 @@ function App() {
   const [country, setCountry] = useState(MAPPED_COUNTRIES[6]);
   const [tracks, setTracks] = useState([]);
   const [showMainPage, setShowMainPage] = useState(false);
+  const [trackIndex, setTrackIndex] = useState(0);
 
   const handleButtonClick = () => {
     setShowMainPage(true);
@@ -43,17 +44,17 @@ function App() {
         <div className={`home-page ${showMainPage ? 'fade-out' : 'fade-in'}`}>
           <Home showMainPage={showMainPage} setShowMainPage={setShowMainPage} handleButtonClick={handleButtonClick}/>
         </div>
-        
-        {showMainPage && tracks.length > 0 && <AudioPlayer class='fade-in' tracks={tracks} />}
+
+        {showMainPage && tracks.length > 0 && <AudioPlayer class='fade-in' tracks={tracks} trackIndex={trackIndex} setTrackIndex={setTrackIndex} />}
         {showMainPage && <Search class='fade-in' country={country} setCountry={setCountry}/>}
         <SimpleGlobe country={country} setCountry={setCountry}/>
-          
+
         {showMainPage &&
-          <button class='fade-in song-list-btn' onClick={toggleVisibility}>
+          <button class='fade-in song-list-btn' onClick={toggleVisibility} >
             {isVisible ? "Hide Song List" : "Show Song List"}
           </button>}
-        {showMainPage && <SongLists class='fade-in' tracks={tracks} isVisible={isVisible} setIsVisible={setIsVisible}/>}
-        
+        {showMainPage && <SongLists class='fade-in' tracks={tracks} isVisible={isVisible} setIsVisible={setIsVisible} setTrackIndex={setTrackIndex}/>}
+
     </div>
   );
 }

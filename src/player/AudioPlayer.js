@@ -4,9 +4,8 @@ import Backdrop from "./Backdrop";
 import "./styles.css";
 import ReactPlayer from "react-player";
 
-const AudioPlayer = ({ tracks }) => {
+const AudioPlayer = ({ tracks, trackIndex, setTrackIndex }) => {
   // State
-  const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness

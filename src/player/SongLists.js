@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./styles.css";
 
-const SongLists = ({ tracks, isVisible , setIsVisible}) => {
+const SongLists = ({ tracks, isVisible , setIsVisible, setTrackIndex}) => {
 
     const toggleSongListVisibility = () => {
         setIsVisible(!isVisible);
@@ -11,7 +11,7 @@ const SongLists = ({ tracks, isVisible , setIsVisible}) => {
         if (index < 10) {
             return (
                 <li key={index}>
-                    <a href={track.audioSrc}>{track.title}</a>
+                    <a onClick={() => setTrackIndex(index)}>{track.title}</a>
                 </li>
             );
         }
@@ -19,7 +19,7 @@ const SongLists = ({ tracks, isVisible , setIsVisible}) => {
 
     return (
         <div>
-            {isVisible && 
+            {isVisible &&
             (<div className={`song-list ${isVisible ? 'visible' : 'hidden'}`}>
                 <button className="close-button" onClick={toggleSongListVisibility}>x</button>
                 <ol>
