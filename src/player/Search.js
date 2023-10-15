@@ -2,26 +2,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { makeStyles } from "@mui/styles";
-
-
-const countries = [
-    {
-      value: 'CA',
-      label: 'Canada',
-    },
-    {
-      value: 'US',
-      label: 'United States',
-    },
-    {
-      value: 'BR',
-      label: 'United Kingdom',
-    },
-    {
-      value: 'JP',
-      label: 'Japan',
-    },
-];
+import { MAPPED_COUNTRIES } from "../countries";
 
 const Search = ({country, setCountry}) => (
 
@@ -36,7 +17,7 @@ const Search = ({country, setCountry}) => (
                 id="countries"
                 select
                 label="Country"
-                value={country}
+                value={country.value}
                 variant='standard'
                 sx={{
                     "width": '200px',
@@ -58,10 +39,11 @@ const Search = ({country, setCountry}) => (
                 }}
                 onChange={(e) => {
                     console.log("text field changing country:", e.target.value);
-                    setCountry(e.target.value);
+                    const country = MAPPED_COUNTRIES.find((country) => country.value === e.target.value);
+                    setCountry(country);
                 }}
             >
-            {countries.map((option) => (
+            {MAPPED_COUNTRIES.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                 {option.label}
                 </MenuItem>
