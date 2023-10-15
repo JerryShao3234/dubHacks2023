@@ -58,6 +58,6 @@ export const MAPPED_COUNTRIES = [
     {"value": "AE", "label": "United Arab Emirates", "lat": 23.4, "lng": 53.8, "id": 58, "text": "United Arab Emirates"},
     {"value": "GB", "label": "United Kingdom", "lat": 55, "lng": 3.4, "id": 59, "text": "United Kingdom"},
     {"value": "US", "label": "United States", "lat": 37, "lng": -95, "id": 1, "text": "United States"},
-    {"value": "UY", "label": "Uruguay", "lat": 32.5, "lng": 55.7, "id": 60, "text": "Uruguay"},
+    {"value": "UY", "label": "Uruguay", "lat": -32.5, "lng": -55.7, "id": 60, "text": "Uruguay"},
     {"value": "ZW", "label": "Zimbabwe", "lat": 19, "lng": 29.1, "id": 61, "text": "Zimbabwe"}
 ];
