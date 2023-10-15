@@ -152,6 +152,8 @@ input[type="range"] {
     width: 150px;
     box-shadow: 3px 3px 3px #F1B4BB;
     transition: border 0.3s ease; /* Add a transition effect to the border property */
+    background-size: cover;
+    background-position: center center;
 }
 
 .artwork.isPlaying {
