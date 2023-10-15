@@ -19,7 +19,7 @@ function SimpleGlobe() {
     useEffect(() => {
         globeEl.autoRotate = true;
         globeEl.current.controls().autoRotate = true;
-        globeEl.current.controls().autoRotateSpeed = 0.5;
+        globeEl.current.controls().autoRotateSpeed = 0.1;
     }, []);
 
     return <ReactGlobe

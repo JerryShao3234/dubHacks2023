@@ -17,10 +17,6 @@ const countries = [
       value: 'UK',
       label: 'United Kingdom',
     },
-    {
-      value: 'JPY',
-      label: 'Japan',
-    },
 ];
 
 const Search = () => (
