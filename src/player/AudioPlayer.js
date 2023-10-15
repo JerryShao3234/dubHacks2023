@@ -8,24 +8,64 @@ const AudioPlayer = ({ tracks }) => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [audioUrl, setAudioUrl] = useState(null);
 
   // Destructure for conciseness
-  const { title, artist, color, image, audioSrc } = tracks[trackIndex];
+  const { title, artist, color, image } = tracks[trackIndex];
+
+  const getAudioUrl = async (songTitle, artist) => {
+    const temp = sanitizeSongName(songTitle);
+    //remove Official and Video from song title
+    const temp2 = temp.replace(/\b(Official|Video|VIDEO|OFFICIAL|official|video|music|Music|MUSIC|Live|LIVE|live)\b/g, '');
+    // remove any extra spaces
+    let temp3 = temp2;
+    if (!temp2.includes(artist.split(" ")[0])) {
+      temp3 = temp3 + " " + artist
+    }
+
+    const temp4 = temp3.replace(/\s+/g, ' ').trim().split(" ").slice(0,7).join('+');
+    const url = 'https://thingproxy.freeboard.io/fetch/https://api.deezer.com/search?q=' + temp4;
+    console.log(url)
+    return fetch(url).then((response) => {
+      return response.json();
+    }).then((data) => {
+      return data.data[0].preview;
+    }).catch((error) => {
+      toNextTrack();
+    });
+  }
 
   // Refs
-  const audioRef = useRef(new Audio(audioSrc));
+  const audioRef = useRef();
   const intervalRef = useRef();
-  const isReady = useRef(false);
 
-  // Destructure for conciseness
-  const { duration } = audioRef.current;
+  useEffect(() => {
+    audioRef.current.pause();
+    clearInterval(intervalRef.current);
+    getAudioUrl(tracks[trackIndex].title, tracks[trackIndex].artist).then((url) => {
+      setAudioUrl(url);
+      setTrackProgress(0);
+    });
+  }, [trackIndex]);
 
-  const currentPercentage = duration
-    ? `${(trackProgress / duration) * 100}%`
-    : "0%";
-  const trackStyling = `
-    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
-  `;
+  useEffect(() => {
+    audioRef.current.pause();
+    clearInterval(intervalRef.current);
+    setTrackIndex(0);
+    getAudioUrl(tracks[trackIndex].title, tracks[trackIndex].artist).then((url) => {
+      setAudioUrl(url);
+      setTrackProgress(0);
+    });
+  }, [tracks]);
+
+  const getTrackStyling = (duration) => {
+    const currentPercentage = duration
+        ? `${(trackProgress / duration) * 100}%`
+        : "0%";
+    return `
+      -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
+    `;
+  }
 
   const startTimer = () => {
     // Clear any timers already running
@@ -71,45 +111,26 @@ const AudioPlayer = ({ tracks }) => {
     }
   };
 
-  useEffect(() => {
-    if (isPlaying) {
-    //   audioRef.current.play();
-      startTimer();
-    } else {
-      audioRef.current.pause();
-    }
-  }, [isPlaying]);
-
-  // Handles cleanup and setup when changing tracks
-  useEffect(() => {
-    audioRef.current.pause();
-
-    audioRef.current = new Audio(audioSrc);
-    setTrackProgress(audioRef.current.currentTime);
-
-    if (isReady.current) {
-    //   audioRef.current.play();
+  const togglePlayPause = (changeTo) => {
+    if (changeTo) {
       setIsPlaying(true);
+      audioRef.current.play();
       startTimer();
     } else {
-      // Set the isReady ref as true for the next pass
-      isReady.current = true;
-    }
-  }, [trackIndex]);
-
-  useEffect(() => {
-    // Pause and clean up on unmount
-    return () => {
-      audioRef.current.pause();
       clearInterval(intervalRef.current);
-    };
-  }, []);
+      setIsPlaying(false);
+      audioRef.current.pause();
+    }
+  }
 
-  if (!tracks.length) return <></>;
+  const sanitizeSongName = (songName) => {
+    return songName.replace(/[~!@$%^&*()\-_=+\[{\]}\\|;:',./?`"‘’]/g, "");
+  }
 
   return (
     <div className="audio-player">
       <div className="track-info">
+        <audio src={audioUrl} ref={audioRef} onPause={() => togglePlayPause(false)} onPlay={() => togglePlayPause(true)} />
         <div
           className={`artwork ${isPlaying ? "isPlaying" : ""}`}
           style={{ backgroundImage: `url(${image})` }}
@@ -120,20 +141,22 @@ const AudioPlayer = ({ tracks }) => {
           isPlaying={isPlaying}
           onPrevClick={toPrevTrack}
           onNextClick={toNextTrack}
-          onPlayPauseClick={setIsPlaying}
+          onPlayPauseClick={() => togglePlayPause(!isPlaying)}
         />
-        <input
-          type="range"
-          value={trackProgress}
-          step="1"
-          min="0"
-          max={duration ? duration : `${duration}`}
-          className="progress"
-          onChange={(e) => onScrub(e.target.value)}
-          onMouseUp={onScrubEnd}
-          onKeyUp={onScrubEnd}
-          style={{ background: trackStyling }}
-        />
+        { audioRef && audioRef.current &&
+          <input
+            type="range"
+            value={trackProgress}
+            step="1"
+            min="0"
+            max="30"
+            className="progress"
+            onChange={(e) => onScrub(e.target.value)}
+            onMouseUp={onScrubEnd}
+            onKeyUp={onScrubEnd}
+            style={{ background: getTrackStyling(audioRef.current.duration) }}
+          />
+        }
       </div>
       <Backdrop
         trackIndex={trackIndex}

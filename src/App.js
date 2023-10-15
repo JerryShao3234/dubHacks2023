@@ -20,8 +20,7 @@ function App() {
                 title: song.title,
                 artist: song.artists[0].name,
                 color: "#F1B4BB",
-                image: song.thumbnails[0].url,
-                audioSrc: undefined
+                image: song.thumbnails[0].url
             }
         });
         setTracks(tracks);
