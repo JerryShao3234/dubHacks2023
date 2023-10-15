@@ -110,11 +110,10 @@ const AudioPlayer = ({ tracks }) => {
   return (
     <div className="audio-player">
       <div className="track-info">
-        <img
+        <div
           className={`artwork ${isPlaying ? "isPlaying" : ""}`}
-          src={image}
-          alt={`track artwork for ${title} by ${artist}`}
-        />
+          style={{ backgroundImage: `url(${image})` }}
+        ></div>
         <h2 className="title">{title}</h2>
         <h3 className="artist">{artist}</h3>
         <AudioControls
