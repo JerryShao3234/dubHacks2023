@@ -10,12 +10,13 @@ function SimpleGlobe({country, setCountry}) {
 
     const [labelSize, setLabelSize] = React.useState(1.3);
     const [currAlt, setCurrAlt] = React.useState(1.5);
+    const [spin, setSpin] = React.useState(true);
 
     const handleZoom2 = (event) => {
         if(event.altitude != currAlt){
             setCurrAlt(event.altitude);
             if(event.altitude < 1.0){
-                setLabelSize(0.5);
+                setLabelSize(0.6);
             }else{
                 setLabelSize(1.2);
             }
@@ -26,10 +27,10 @@ function SimpleGlobe({country, setCountry}) {
     useEffect(() => {
         globeEl.autoRotate = true;
         globeEl.current.controls().enableZoom = true;
-        globeEl.current.controls().autoRotate = true;
+        globeEl.current.controls().autoRotate = spin;
         globeEl.current.controls().autoRotateSpeed = 0.15;
         globeEl.current.pointOfView({lat: country.lat, lng: country.lng, altitude: 0.5}, 1000);
-    }, [country]);
+    }, [country, spin]);
 
     return <ReactGlobe
         ref={globeEl}
@@ -40,9 +41,10 @@ function SimpleGlobe({country, setCountry}) {
         labelSize={labelSize}
         labelDotRadius={labelSize*0.35}
         onZoom={handleZoom2}
-        onLabelClick={(label, event, coords) => (
+        onLabelClick={(label, event, coords) => {
             setCountry(label)
-        )}
+            setSpin(false)
+        }}
         options={{
             enableMarkerGlow: true,
             markerRadiusScaleRange: [1, 2],
